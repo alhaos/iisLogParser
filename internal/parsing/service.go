@@ -30,6 +30,10 @@ func (p Parser) Parse(filename string) ([]*model.LogEntry, error) {
 			return nil, fmt.Errorf("error reading line: %w", err)
 		}
 
+		if len(strings.TrimSpace(line)) == 0 {
+			continue
+		}
+
 		if strings.HasPrefix(line, "#") && !strings.HasPrefix(line, "#Fields") {
 			continue
 		}
