@@ -33,7 +33,7 @@ func (p *lineParser) parseLine(line string) (*model.LogEntry, error) {
 		Datetime: fields[p.fields["date"]] + fields[p.fields["time"]],
 		URL:      fields[p.fields["cs-uri-stem"]],
 		Username: fields[p.fields["cs-username"]],
-		IP:       fields[p.fields[",cs-uri-query"]],
+		IP:       fields[p.fields["c-ip"]],
 	}
 
 	return le, nil
