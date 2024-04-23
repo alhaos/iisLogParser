@@ -6,6 +6,7 @@ import (
 	"iisLogParser/internal/fsAdapter"
 	"iisLogParser/internal/model"
 	"iisLogParser/internal/parsing"
+	"log"
 )
 
 func main() {
@@ -38,12 +39,15 @@ func main() {
 	// process files
 	for _, file := range files {
 
+		log.Println("file:", file)
+
 		// extract log entries from file
 		logEntries, err := parser.Parse(file)
 		if err != nil {
 			panic(err)
 		}
 
+		log.Println("logEntries count:", len(logEntries))
 		// append current logfile entries to common entries
 		commonLogEntries = append(commonLogEntries, logEntries...)
 	}
@@ -53,4 +57,6 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
+	log.Println("outfile:", config.OutFileName)
 }
